@@ -1,0 +1,47 @@
+swagger: "2.0"
+
+info:
+  title: "Portfolio Budget"
+  version: "1.0.0"
+  description: "Simple backend API to manage portfolio budget using an envelope budgeting method"  
+
+servers:
+  url: https://localhost:4001
+
+
+basePath: "/api-docs"
+
+paths:
+  /api/v1/envelopes
+    get:
+      summary: "Get all envelopes"
+      responses:
+        "200":
+          description: Returns a list of all envelopes
+          content:
+            application/json:
+              schema:
+                Envelopes:
+                  type: Object
+                  required:
+                    - id
+                    - title
+                    - budget
+                  properties:
+                    id:
+                      type: string
+                      description: The auto generated id
+                    title:
+                      type: string
+                      description: Envelope title
+                    budget:
+                      type: string
+                      description: Total budget
+                  example:
+                    id: 123
+                    title: Pay up Punk
+                    budget: 2000
+
+
+
+    
