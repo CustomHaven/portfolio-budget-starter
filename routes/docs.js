@@ -4,7 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
-
+// not using swaggerOptions atm instead using swagger.yml file
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
@@ -25,10 +25,10 @@ const swaggerOptions = {
     },
     apis: ['./routes/envelopes.js']
 };
-
+// not using above this code or the const specs
 
 const specs = swaggerJsDoc(swaggerOptions);
-
+// instead using yamlDoc below as the route
 const yamlDoc = yaml.load(fs.readFileSync(path.resolve(__dirname, '../swagger.yml'), 'utf8'));
 
 swaggerRouter.use('/', swaggerUi.serve);
