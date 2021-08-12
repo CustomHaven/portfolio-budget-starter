@@ -31,14 +31,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                title:
-                  type: string
-                budget:
-                  type: integer
+              $ref: '#/components/schemas/Envelop'
       responses:
         201:
           description: A new envelop successufully made
@@ -68,5 +61,101 @@ paths:
         500:
           description: Internal server error
           content: {}
+    put:
+      tags:
+      - Envelopes
+      summary: Update a specific envelop
+      produces:
+        - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Fetch the envelop you want to update
+        required: true
+      requestBody:
+        description: Write a new envelope
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Envelop'
+      responses:
+        201:
+          description: Envelop updated
+          content: {}
+        500:
+          description: Internal server error
+          content: {}
+    delete:
+      tags:
+      - Envelopes
+      summary: Delete an envelop
+      produces:
+        - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Delete an envelop
+        required: true
+        example: 1
+      responses:
+        204:
+          description: Successfully deleted the envelop
+          content: {}
+        500:
+          description: Internal server error
+          content: {}
+  /api/v1/envelopes/{fromId}/transfer/{toId}:
+    post:
+      tags:
+        - Envelopes
+      summary: Transfer money
+      produces:
+        - application/json
+      parameters:
+      - name: fromId
+        in: path
+        description: fromId
+        required: true
+      - name: toId
+        in: path
+        description: toId
+        required: true
+      requestBody:
+        description: Transfer the money from fromId to toId
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+              properties:
+                amount:
+                  type: integer
+              example:
+                amount: 200
+      responses:
+        201:
+          description: Amount of cash has been sent
+          content: {}
+        500:
+          description: Not enough money or someother error
+          content: {}
 
-components: {}
+components:
+  schemas:
+    Envelop:
+      type: object
+      required:
+        - title
+        - budget
+      properties:
+        title:
+          type: string
+        budget:
+          type: integer
+      example:
+        title: Pay up punk
+        budget: 3000
+

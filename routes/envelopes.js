@@ -26,8 +26,8 @@ envelopeRouter.put('/:id', (req, res) => {
   res.status(201).send(update);
 });
 envelopeRouter.delete('/:id', (req, res) => {
-  const deleteEnv = deleteEnvelope(req.params.id);
-  if (deleteEnv) {
+  const newEnvelopList = deleteEnvelope(req.params.id);
+  if (newEnvelopList) {
     res.status(204).send();
   } else {
     res.status(500).send();

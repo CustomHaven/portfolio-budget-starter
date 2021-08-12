@@ -53,7 +53,7 @@ module.exports = {
         
         envelope.title = title;
         envelope.budget = budget;
-        return envelopes;
+        return envelope;
     },
     deleteEnvelope(dataId) {
 
