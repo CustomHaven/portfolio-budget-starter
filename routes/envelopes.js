@@ -39,3 +39,19 @@ envelopeRouter.post('/:fromId/transfer/:toId', (req, res) => {
 });
 
 module.exports = envelopeRouter;
+
+
+/**
+ * @swagger
+ * /api/v1/envelopes:
+ *    get:
+ *      summary: Get all envelopes
+ *      produces:
+ *        - application/json
+ *      tags:
+ *        - Envelopes
+ *      responses:
+ *        "200":
+ *          description: Returns a list of all envelopes
+ *
+ */

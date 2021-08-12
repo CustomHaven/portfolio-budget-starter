@@ -27,13 +27,17 @@ const swaggerOptions = {
 };
 // not using above this code or the const specs
 
-const specs = swaggerJsDoc(swaggerOptions);
+// const specs = swaggerJsDoc(swaggerOptions);
 // instead using yamlDoc below as the route
 const yamlDoc = yaml.load(fs.readFileSync(path.resolve(__dirname, '../swagger.yml'), 'utf8'));
-
+const options = {
+    apis: ['./routes/envelopes.js'],
+    swaggerDefinition: yamlDoc    
+}
+const specs = swaggerJsDoc(options);
 swaggerRouter.use('/', swaggerUi.serve);
 
-swaggerRouter.get('/', swaggerUi.setup(yamlDoc, {
+swaggerRouter.get('/', swaggerUi.setup(specs, {
     explorer: true
 }));
 
